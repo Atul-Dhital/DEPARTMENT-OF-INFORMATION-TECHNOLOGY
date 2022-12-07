@@ -26,17 +26,19 @@ gulp
 var themePath = './';
 var projectURL = 'http://doit.loc';
 
+// Browsersync
+const browserSync = require('browser-sync').create();
 // Gulp Nodes
-var gulp        = require( 'gulp' ),
-    gulpPlugins = require( 'gulp-load-plugins' )();
+var gulp = require('gulp'),
+    gulpPlugins = require('gulp-load-plugins')();
 
 // Error Handling
-var onError = function( err ) {
-    console.log( 'An error occurred:', err.message );
-    this.emit( 'end' );
+var onError = function(err) {
+    console.log('An error occurred:', err.message);
+    this.emit('end');
 };
 
-gulp.task('scss', function () {
+gulp.task('scss', function() {
     const { autoprefixer, cleanCss, notify, plumber, sass, sassGlob } = gulpPlugins;
     // return sass(themePath + 'style.scss', { sourcemap: false })
     return gulp.src(themePath + 'style.scss')
@@ -47,30 +49,39 @@ gulp.task('scss', function () {
         .pipe(autoprefixer('last 4 version'))
         .pipe(cleanCss())
         .pipe(gulp.dest(themePath))
+        .pipe(browserSync.stream()) // Reloads style.min.css if that is enqueued.
         .pipe(notify({ message: 'Scss task complete' }));
 });
 
 gulp.task('scripts', function() {
     const { concat, notify, plumber, rename, uglify } = gulpPlugins;
-    return gulp.src( [themePath + 'js/libs/**/*.js', themePath + 'js/development/**/*.js'] )
+    return gulp.src([themePath + 'js/libs/**/*.js', themePath + 'js/development/**/*.js'])
         .pipe(plumber())
         .pipe(concat('js/scripts.js'))
         .pipe(gulp.dest(themePath))
-        .pipe(rename({suffix: '.min'}))
+        .pipe(rename({ suffix: '.min' }))
         .pipe(uglify())
         .pipe(gulp.dest(themePath))
         .pipe(notify({ message: 'Scripts task complete' }));
 });
 
 // Watch task -- this runs on every save.
-gulp.task( 'watch', function() {
+gulp.task('watch', function() {
+
+    browserSync.init({
+        proxy: projectURL,
+        injectChanges: true,
+    });
 
     // Watch all .scss files
-    gulp.watch( themePath + '**/**/*.scss', gulp.series( 'scss' ) );
+    gulp.watch(themePath + '**/**/*.scss', gulp.series('scss'));
+    gulp.watch(themePath + '**/**/*.js').on('change', browserSync.reload);
+    gulp.watch(themePath + '**/**/*.html').on('change', browserSync.reload);
+    gulp.watch(themePath + '**/**/*.php').on('change', browserSync.reload);
 
     // Watch js files
-    gulp.watch( themePath + 'js/development/**/*.js', gulp.series( 'scripts' ) );
+    gulp.watch(themePath + 'js/development/**/*.js', gulp.series('scripts'));
 });
 
 // Default task -- runs scss and watch functions
-gulp.task( 'default', gulp.series('scripts', 'scss', 'watch'));
+gulp.task('default', gulp.series('scripts', 'scss', 'watch'));

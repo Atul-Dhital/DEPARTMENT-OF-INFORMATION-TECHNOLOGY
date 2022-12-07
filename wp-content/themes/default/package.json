@@ -10,10 +10,11 @@
   "author": "Eleven11 Group Inc",
   "license": "ISC",
   "devDependencies": {
+    "browser-sync": "^2.27.10",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^6.1.0",
     "gulp-clean-css": "^4.2.0",
-    "gulp-concat": "^2.6.0",
+    "gulp-concat": "^2.6.1",
     "gulp-load-plugins": "^1.6.0",
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.1",

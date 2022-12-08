@@ -24,7 +24,7 @@ gulp
 
 // Config for theme
 var themePath = './';
-var projectURL = 'http://doit.loc';
+var projectURL = 'http://deptofit/';
 
 // Browsersync
 const browserSync = require('browser-sync').create();

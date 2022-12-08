@@ -113,7 +113,7 @@ the_post();
                 </figure>
                 <div class="article__content">
                     <h2 class="article__heading">Cyber Security Awareness</h2>
-                    <p>Information and Communication Technology (ICT) together with Internet is making it possible to share vast amount of knowledge and information and …</p>
+                    <p>Information and Communication Technology (ICT)  together with Internet is making it possible to share vast amount of knowledge and information and …</p>
                     <div class="article__link">
                         <a href="#">Read More</a>
                         <svg class="icon icon-arrow">
@@ -172,7 +172,7 @@ the_post();
                         <use xlink:href="#icon-village"></use>
                     </svg>
                     <h3 class="program__subtitle">E-Village</h3>
-                    <p>The advancement in technology has made people more inclined towards tablets…</p>
+                    <p>The lorem20 advancement in technology has made people more inclined towards tablets…</p>
                 </div>
                 <div class="program__content">
                     <svg class="icon icon-training">

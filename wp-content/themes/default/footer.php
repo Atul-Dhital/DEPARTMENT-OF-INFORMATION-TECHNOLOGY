@@ -55,7 +55,7 @@
                         </svg>
                         <h3 class="footer__heading">Email</h3>
                     </div>
-                    <a class="footer__info-link" href="info@doit .gov.np">info@doit .gov.np</a>
+                    <a class="footer__info-link" href="mailto:info@doit .gov.np">info@doit .gov.np</a>
                 </div>
                 <div class="footer-info__data">
                     <div class="footer-info__header">
